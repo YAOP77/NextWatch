@@ -6,7 +6,7 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 
-const Content = () => {
+const Container = () => {
     const [openIndex, setOpenIndex] = useState(null);
 
     const faqs = [
@@ -135,4 +135,4 @@ const Content = () => {
     )
 }
 
-export default Content;
+export default Container;

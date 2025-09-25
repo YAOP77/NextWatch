@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
-import Content from "../components/content";
+import Container from "../components/Container";
 import Footer from "../components/Footer"
 
 function MobileMenu({ view, setView }) {
@@ -97,7 +97,7 @@ const AuthLayout = () => {
                     </AnimatePresence>
                 </div>
                 <div>
-                    <Content/>
+                    <Container/>
                     {/* <CardPayement /> */}
                 </div>
                 <div>
