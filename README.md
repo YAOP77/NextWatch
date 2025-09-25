@@ -1,6 +1,7 @@
-# NextWatch Frontend
 
-Plateforme de streaming moderne développée avec React, Vite et Tailwind CSS.
+# N-Watch
+
+Plateforme de streaming moderne développée avec React et Tailwind CSS.
 
 ## Fonctionnalités principales
 
