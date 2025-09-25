@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 import Content from "../components/content";
-import Footer from "../components/Footer";
+import Footer from "../components/Footer"
 
 function MobileMenu({ view, setView }) {
     const [open, setOpen] = useState(false);
