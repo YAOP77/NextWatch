@@ -93,7 +93,7 @@ const Login = () => {
                 <h1 className="text-red-900 text-left pb-4 text-2xl font-bold">Connexion</h1>
 
                 <div className="flex-col justify-items-start">
-                <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-1 text-left">
                     Email
                 </label>
                 <input
@@ -107,7 +107,7 @@ const Login = () => {
                 </div>
 
                 <div className="relative flex-col justify-items-start">
-                <label htmlFor="password" className="block text-sm font-medium text-white mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-white mb-1 text-left">
                     Mot de passe
                 </label>
                 <input

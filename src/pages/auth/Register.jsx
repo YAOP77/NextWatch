@@ -99,7 +99,7 @@ const Register = () => {
             >
                 <h1 className="text-red-900 text-2xl text-left pb-2 font-bold">Inscrivez-vous</h1>
             <div className="flex-col justify-items-start">
-                <label htmlFor="username" className="block text-sm font-medium text-white mb-1">
+                <label htmlFor="username" className="block text-sm font-medium text-white mb-1 text-left">
                     Nom
                 </label>
                 <input
@@ -113,7 +113,7 @@ const Register = () => {
             </div>
 
             <div className="flex-col justify-items-start">
-                <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-1 text-left">
                     Email
                 </label>
                 <input
@@ -127,7 +127,7 @@ const Register = () => {
             </div>
 
             <div className="relative flex-col justify-items-start">
-                <label htmlFor="password" className="block text-sm font-medium text-white mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-white mb-1 text-left">
                     Mot de passe
                 </label>
                 <input
@@ -147,7 +147,7 @@ const Register = () => {
             </div>
 
             <div className="relative flex-col justify-items-start">
-                <label htmlFor="passwordConfirm" className="block text-sm font-medium text-white mb-1">
+                <label htmlFor="passwordConfirm" className="block text-sm font-medium text-white mb-1 text-left">
                     Confirmation du mot de passe
                     </label>
                     <input
