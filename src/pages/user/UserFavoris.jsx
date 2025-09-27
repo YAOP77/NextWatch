@@ -40,7 +40,7 @@ const UserFavoris = () => {
       <div className="flex-1 ml-0 md:ml-48">
         <main className="pt-20 px-6">
           <div className="flex items-center mb-5 mt-5">
-            <a href="/movies">
+            <a href="/movies" className="block md:hidden">
               <button className="bg-neutral-900 text-white px-5 py-2 rounded-lg font-bold shadow hover:bg-neutral-800 transition mr-4 cursor-pointer">
                 Retour aux films
               </button>
