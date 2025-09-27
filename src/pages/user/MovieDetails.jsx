@@ -7,6 +7,8 @@ import userMoviesService from "./services/userMoviesService";
 import SimilarMovies from "./components/SimilarMovies";
 import CardPayement from "./components/CardPayement";
 import { Play, Bookmark, ClockFading } from 'lucide-react';
+import favorisService from "./services/userFavorisService";
+import watchLaterService from "./services/userWatchLaterService";
 import Button from '../../components/Button';
 import { VideoInfoIcons } from '../../components/VideoInfoIcons';
 
@@ -18,13 +20,17 @@ const MovieDetails = () => {
     const [isFavoris, setIsFavoris] = useState(false);
     const [isWatchLater, setIsWatchLater] = useState(false);
     // Simule la gestion favoris et watch later (à remplacer par API réelle)
-    const handleToggleFavorite = (movieId) => {
-        setIsFavoris((prev) => !prev);
-        // TODO: call API favoris
+    const handleToggleFavorite = async (movieId) => {
+        try {
+            await favorisService.HandleSmartFavoris(movieId);
+            setIsFavoris((prev) => !prev);
+        } catch (e) {}
     };
-    const handleToggleWatchLater = (movieId) => {
-        setIsWatchLater((prev) => !prev);
-        // TODO: call API watch later
+    const handleToggleWatchLater = async (movieId) => {
+        try {
+            await watchLaterService.addOrRemoveWatchLater(movieId);
+            setIsWatchLater((prev) => !prev);
+        } catch (e) {}
     };
 
     const userReadMovieById = async (movieId) => {
@@ -99,26 +105,28 @@ const MovieDetails = () => {
                                         Choisir une offre
                                     </a>
                                 ) : (
-                                    <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
+                                    <div className="absolute bottom-4 right-4 flex items-center gap-6 z-10">
                                         <button
                                             onClick={() => setIsWatching(true)}
-                                            className="flex items-center gap-2 text-lg text-white bg-neutral-950 px-5 py-3 rounded-lg hover:opacity-75 font-bold cursor-pointer"
+                                            className="flex items-center gap-2 text-xl text-white bg-neutral-950 px-7 py-4 rounded-lg hover:opacity-75 font-bold cursor-pointer"
                                         >
-                                            Regarder <Play size={17} color="#ffce00" strokeWidth={1.75} />
+                                            Regarder <Play size={22} color="#ffce00" strokeWidth={2} />
                                         </button>
                                         <button
-                                            className="bg-black bg-opacity-50 hover:bg-neutral-800 text-yellow-400 p-2 rounded-full transition cursor-pointer"
+                                            className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer border-2 border-yellow-400"
+                                            style={{ fontSize: '2rem' }}
                                             title="Mettre en favoris"
                                             onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavorite(movie._id); }}
                                         >
-                                            <Bookmark size={20} color={isFavoris ? "#ffce00" : "#ffffff"} strokeWidth={1.75} />
+                                            <Bookmark size={32} color={isFavoris ? "#ffce00" : "#ffffff"} strokeWidth={2.5} />
                                         </button>
                                         <button
-                                            className="bg-black bg-opacity-50 hover:bg-neutral-800 text-yellow-400 p-2 rounded-full transition cursor-pointer"
+                                            className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer border-2 border-yellow-400"
+                                            style={{ fontSize: '2rem' }}
                                             title="Regarder plus tard"
                                             onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchLater(movie._id); }}
                                         >
-                                            <ClockFading size={20} color={isWatchLater ? "#ffce00" : "#ffffff"} strokeWidth={1.75} />
+                                            <ClockFading size={32} color={isWatchLater ? "#ffce00" : "#ffffff"} strokeWidth={2.5} />
                                         </button>
                                     </div>
                                 )}
