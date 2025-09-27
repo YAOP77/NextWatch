@@ -86,7 +86,7 @@ const MoviesPremiumDetails = () => {
     return (
         <div className="bg-black min-h-screen px-0 py-8">
             <main className="w-full max-w-9xl mx-auto px-4 sm:px-8">
-            <div className="w-full flex flex-col items-center">
+            <div className="w-full flex flex-col items-center mb-2">
                 <Button />
             </div>
             <div className="relative w-full h-[360px] sm:h-[480px] md:h-[560px] m-auto overflow-hidden rounded-lg">
@@ -119,7 +119,7 @@ const MoviesPremiumDetails = () => {
                                     </button>
                                     <div className="flex gap-4">
                                         <button
-                                            className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer border-2 border-yellow-400"
+                                            className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer"
                                             style={{ fontSize: '2rem' }}
                                             title="Mettre en favoris"
                                             onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavorite(movie._id); }}
@@ -127,7 +127,7 @@ const MoviesPremiumDetails = () => {
                                             <Bookmark size={32} color={isFavoris ? "#ffce00" : "#ffffff"} strokeWidth={2.5} />
                                         </button>
                                         <button
-                                            className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer border-2 border-yellow-400"
+                                            className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer"
                                             style={{ fontSize: '2rem' }}
                                             title="Regarder plus tard"
                                             onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchLater(movie._id); }}
