@@ -31,7 +31,7 @@ const UserHeader = ({ onSearch }) => {
     <header className="flex flex-row justify-between items-center px-4 py-3 fixed top-0 left-0 right-0 bg-black z-50">
       {/* Logo ou titre */}
       <div className="flex items-center gap-2">
-        <span className="font-extralight text-red-800 text-xl flex sm:text-2xl">Next <span className='bg-red-800 text-white font-bold ml-1'>Watch</span></span>
+        <span className="font-extralight text-red-800 text-lg flex sm:text-2xl">Next <span className='bg-red-800 text-white font-bold ml-1'>Watch</span></span>
       </div>
 
 
