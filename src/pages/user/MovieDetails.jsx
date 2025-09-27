@@ -105,18 +105,16 @@ const MovieDetails = () => {
                                         Choisir une offre
                                     </a>
                                 ) : (
-                                    <div className="flex justify-between flex-wrap absolute bottom-4 right-4 items-center gap-6 z-10">
-                                        <div>
+                                    <div className="absolute bottom-4 left-0 w-full flex flex-row justify-between items-center px-4 gap-2 z-10">
+                                        <button
+                                            onClick={() => setIsWatching(true)}
+                                            className="flex items-center gap-2 text-xl text-white bg-neutral-950 px-7 py-4 rounded-lg hover:opacity-75 font-bold cursor-pointer"
+                                        >
+                                            Regarder <Play size={22} color="#ffce00" strokeWidth={2} />
+                                        </button>
+                                        <div className="flex gap-4">
                                             <button
-                                                onClick={() => setIsWatching(true)}
-                                                className="flex items-center gap-2 text-xl text-white bg-neutral-950 px-7 py-4 rounded-lg hover:opacity-75 font-bold cursor-pointer"
-                                            >
-                                                Regarder <Play size={22} color="#ffce00" strokeWidth={2} />
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button
-                                                className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer"
+                                                className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer border-2 border-yellow-400"
                                                 style={{ fontSize: '2rem' }}
                                                 title="Mettre en favoris"
                                                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavorite(movie._id); }}
@@ -124,7 +122,7 @@ const MovieDetails = () => {
                                                 <Bookmark size={32} color={isFavoris ? "#ffce00" : "#ffffff"} strokeWidth={2.5} />
                                             </button>
                                             <button
-                                                className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer"
+                                                className="bg-black bg-opacity-60 hover:bg-neutral-800 text-yellow-400 p-3 rounded-full transition cursor-pointer border-2 border-yellow-400"
                                                 style={{ fontSize: '2rem' }}
                                                 title="Regarder plus tard"
                                                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchLater(movie._id); }}
