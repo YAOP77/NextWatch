@@ -11,7 +11,7 @@ const Register = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
     const [ loading, setLoading ] = useState(false);
-    const [ message, setMessage ] = useState({ type: "", text: "" });
+    const [ message, setMessage ] = useState(null);
     const [ viewPassword, setViewPassword ] = useState(false);
     const [ viewPw, setViewPw ] = useState(false);
     const [ formData, setFormData ] = useState({
@@ -188,12 +188,12 @@ const Register = () => {
                 </button>
             </div>
 
-            {message?.text && (
+            {message && message.text && (
                 <p
                     className={`text-center text-lg ${
-                    message.type === "error"
-                        ? "text-red-500 font-extralight text-sm py-10"
-                        : "text-green-600"
+                        message.type === "error"
+                            ? "text-red-500 font-extralight text-sm py-2"
+                            : "text-green-600"
                     }`}
                 >
                     {message.text}
