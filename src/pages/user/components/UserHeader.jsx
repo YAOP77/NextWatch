@@ -127,7 +127,7 @@ const UserHeader = ({ onSearch }) => {
             </li>
           </ul>
           <div className="mt-auto px-4 pb-6 flex flex-col gap-2">
-            <div className="flex flex-row items-center gap-2 text-white">
+            <div className="flex flex-row items-center gap-2 text-white cursor-pointer" onClick={() => setUserModalOpen(true)}>
               <span className="font-bold">{user.username}</span> -
               <span
                 className={
