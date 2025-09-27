@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
-import UserSidebare from "./components/UserSidebar";
 import userMoviesService from "./services/userMoviesService";
 import SimilarMovies from "./components/SimilarMovies";
 import CardPayement from "./components/CardPayement";
@@ -68,11 +67,11 @@ const MoviesPremiumDetails = () => {
     );
 
     return (
-        <div className="bg-black min-h-screen flex flex-col md:flex-row px-0 py-8">
-            <UserSidebare />
-
-            <main className="flex-1 ml-0 md:ml-36 px-4 sm:px-8">
-            <Button />
+        <div className="bg-black min-h-screen px-0 py-8">
+            <main className="w-full max-w-9xl mx-auto px-4 sm:px-8">
+            <div className="w-full flex flex-col items-center">
+                <Button />
+            </div>
             <div className="relative w-full h-[360px] sm:h-[480px] md:h-[560px] m-auto overflow-hidden rounded-lg">
                 {/* Image ou Vidéo */}
                 {!isWatching ? (
