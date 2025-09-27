@@ -6,7 +6,8 @@ import Loader from "../../components/loader/loader";
 import userMoviesService from "./services/userMoviesService";
 import SimilarMovies from "./components/SimilarMovies";
 import CardPayement from "./components/CardPayement";
-import { Play, Tag, Clock3, CalendarDays, ArrowLeft } from 'lucide-react';
+import { Play, Tag, Clock3, CalendarDays } from 'lucide-react';
+import Button from '../../components/Button';
 import { FaStar } from "react-icons/fa6";
 
 const MoviesPremiumDetails = () => {
@@ -58,10 +59,9 @@ const MoviesPremiumDetails = () => {
             <main className="w-full max-w-9xl mx-auto px-4 sm:px-8">
             {/* Ligne avec bouton à gauche et vidéo à droite */}
             <div className="flex items-start gap-4 justify-center w-full">
-                <div className="shrink-0 pt-1">
-                    <Link to="/movies" className="border border-neutral-700 inline-flex items-center gap-2 text-sm text-white bg-neutral-950 h-12 px-3 py-2 rounded-full hover:opacity-80">
-                        <ArrowLeft size={24} />
-                    </Link>
+
+                <div className="w-full mb-4">
+                    <Button onClick={() => window.history.back()} />
                 </div>
 
                 <div className="relative flex-1 h-[360px] sm:h-[680px] md:h-[560px] m-auto overflow-hidden rounded-lg">
@@ -79,10 +79,16 @@ const MoviesPremiumDetails = () => {
                     {/* Overlay sombre */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
 
-                    {/* Titre en haut à gauche */}
-                    <h2 className="absolute top-4 left-4 text-white font-bold text-left text-2xl sm:text-4xl z-10">
-                        {movie.title}
-                    </h2>
+                    {/* Titre et infos vidéo en haut à gauche */}
+                    <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                        <h2 className="text-white font-bold text-left text-2xl sm:text-4xl">{movie.title}</h2>
+                        <div className="flex gap-4 text-white text-sm items-center">
+                            <Tag size={18} /> {movie.category?.nom || movie.category?.name || '—'}
+                            <Clock3 size={18} /> {movie.duration || '—'} min
+                            <CalendarDays size={18} /> {movie.year || '—'}
+                            <MovieRating rating={movie.rating} />
+                        </div>
+                    </div>
 
                     {/* Bouton en bas à gauche */}
                     {movie.isPremium && movie.restricted ? (
