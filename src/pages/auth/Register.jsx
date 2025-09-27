@@ -183,18 +183,20 @@ const Register = () => {
                     speedMultiplier={0.5}
                     />
                 ) : (
-                    "Se connecter"
+                    "S'inscrire"
                 )}
                 </button>
             </div>
 
             {message?.text && (
                 <p
-                className={`text-center text-lg ${
-                    message.type === "error" ? "text-red-500 font-extralight text-sm py-8" : "text-green-600"
-                }`}
+                    className={`text-center text-lg ${
+                    message.type === "error"
+                        ? "text-red-500 font-extralight text-sm py-10"
+                        : "text-green-600"
+                    }`}
                 >
-                {message.text}
+                    {message.text}
                 </p>
             )}
             </form>
