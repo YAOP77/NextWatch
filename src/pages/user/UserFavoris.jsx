@@ -15,8 +15,8 @@ const UserFavoris = () => {
     if (favoris.length > 0 && !selectedMovie) {
       const firstMovie = {
         ...favoris[0].movieId,
-        thumbnailsUrl: `http://localhost:5000/${favoris[0].movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-        moviesUrl: `http://localhost:5000/${favoris[0].movieId.moviesUrl.replace(/\\/g, '/')}`
+        thumbnailsUrl: `//nextwatch-a3h9.onrender.com/${favoris[0].movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
+        moviesUrl: `//nextwatch-a3h9.onrender.com/${favoris[0].movieId.moviesUrl.replace(/\\/g, '/')}`
       };
       setSelectedMovie(firstMovie);
     }
@@ -48,8 +48,8 @@ const UserFavoris = () => {
               favoris.map((fav) => {
                 const absoluteMovie = {
                   ...fav.movieId,
-                  thumbnailsUrl: `http://localhost:5000/${fav.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-                  moviesUrl: `http://localhost:5000/${fav.movieId.moviesUrl.replace(/\\/g, '/')}`
+                  thumbnailsUrl: `//nextwatch-a3h9.onrender.com/${fav.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
+                  moviesUrl: `//nextwatch-a3h9.onrender.com/${fav.movieId.moviesUrl.replace(/\\/g, '/')}`
                 };
                 return (
                   <a

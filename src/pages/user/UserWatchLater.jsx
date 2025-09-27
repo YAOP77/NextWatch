@@ -16,8 +16,8 @@ const UserWatchLater = () => {
     if (watchLater.length > 0 && !selectedMovie) {
       const firstMovie = {
         ...watchLater[0].movieId,
-        thumbnailsUrl: `http://localhost:5000/${watchLater[0].movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-        moviesUrl: `http://localhost:5000/${watchLater[0].movieId.moviesUrl.replace(/\\/g, '/')}`
+        thumbnailsUrl: `//nextwatch-a3h9.onrender.com/${watchLater[0].movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
+        moviesUrl: `//nextwatch-a3h9.onrender.com/${watchLater[0].movieId.moviesUrl.replace(/\\/g, '/')}`
       };
       setSelectedMovie(firstMovie);
     }
@@ -49,8 +49,8 @@ const UserWatchLater = () => {
               watchLater.map((wat) => {
                 const absoluteMovie = {
                   ...wat.movieId,
-                  thumbnailsUrl: `http://localhost:5000/${wat.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-                  moviesUrl: `http://localhost:5000/${wat.movieId.moviesUrl.replace(/\\/g, '/')}`
+                  thumbnailsUrl: `//nextwatch-a3h9.onrender.com/${wat.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
+                  moviesUrl: `//nextwatch-a3h9.onrender.com/${wat.movieId.moviesUrl.replace(/\\/g, '/')}`
                 };
                 const detailsUrl = absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`;
                 return (
