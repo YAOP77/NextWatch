@@ -6,9 +6,9 @@ import Loader from "../../components/loader/loader";
 import userMoviesService from "./services/userMoviesService";
 import SimilarMovies from "./components/SimilarMovies";
 import CardPayement from "./components/CardPayement";
-import { Play, Tag, Clock3, CalendarDays } from 'lucide-react';
+import { Play } from 'lucide-react';
 import Button from '../../components/Button';
-import { FaStar } from "react-icons/fa6";
+import { VideoInfoIcons } from '../../components/VideoInfoIcons';
 
 const MoviesPremiumDetails = () => {
     const { id } = useParams();
@@ -59,9 +59,8 @@ const MoviesPremiumDetails = () => {
             <main className="w-full max-w-9xl mx-auto px-4 sm:px-8">
             {/* Ligne avec bouton à gauche et vidéo à droite */}
             <div className="flex items-start gap-4 justify-center w-full">
-
-                <div className="w-full mb-4">
-                    <Button onClick={() => window.history.back()} />
+                <div className="shrink-0 pt-1">
+                    <Button />
                 </div>
 
                 <div className="relative flex-1 h-[360px] sm:h-[680px] md:h-[560px] m-auto overflow-hidden rounded-lg">
@@ -79,16 +78,10 @@ const MoviesPremiumDetails = () => {
                     {/* Overlay sombre */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
 
-                    {/* Titre et infos vidéo en haut à gauche */}
-                    <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
-                        <h2 className="text-white font-bold text-left text-2xl sm:text-4xl">{movie.title}</h2>
-                        <div className="flex gap-4 text-white text-sm items-center">
-                            <Tag size={18} /> {movie.category?.nom || movie.category?.name || '—'}
-                            <Clock3 size={18} /> {movie.duration || '—'} min
-                            <CalendarDays size={18} /> {movie.year || '—'}
-                            <MovieRating rating={movie.rating} />
-                        </div>
-                    </div>
+                    {/* Titre en haut à gauche */}
+                    <h2 className="absolute top-4 left-4 text-white font-bold text-left text-2xl sm:text-4xl z-10">
+                        {movie.title}
+                    </h2>
 
                     {/* Bouton en bas à gauche */}
                     {movie.isPremium && movie.restricted ? (
@@ -135,20 +128,7 @@ const MoviesPremiumDetails = () => {
                 <p className="text-neutral-500 text-left text-sm sm:text-base mt-2 leading-relaxed">
                     {movie.description}
                 </p>
-                <div className="flex flex-wrap mt-4 gap-4">
-                    <p className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg flex items-center gap-2">
-                        <Tag size={16} /> {movie.category?.nom}
-                    </p>
-                    <p className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg flex items-center gap-2">
-                        <Clock3 size={16} /> {movie.duration}
-                    </p>
-                    <div className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg flex items-center">
-                        <MovieRating rating={movie.rating} />
-                    </div>
-                    <p className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg flex items-center gap-2">
-                        <CalendarDays size={16} /> {movie.date}
-                    </p>
-                </div>
+                <VideoInfoIcons movie={movie} />
             </div>
             <div className="mt-16 border-t border-neutral-800">
                 <SimilarMovies 

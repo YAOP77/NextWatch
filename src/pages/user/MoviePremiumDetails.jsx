@@ -7,7 +7,8 @@ import SimilarMovies from "./components/SimilarMovies";
 import CardPayement from "./components/CardPayement";
 import Loader from "../../components/loader/loader";
 import { Play } from 'lucide-react';
-import { FaStar } from "react-icons/fa6";
+import Button from '../../components/Button';
+import { VideoInfoIcons } from '../../components/VideoInfoIcons';
 
 const MoviesPremiumDetails = () => {
     const { id } = useParams();
@@ -71,6 +72,7 @@ const MoviesPremiumDetails = () => {
             <UserSidebare />
 
             <main className="flex-1 ml-0 md:ml-36 px-4 sm:px-8">
+            <Button />
             <div className="relative w-full h-[360px] sm:h-[480px] md:h-[560px] m-auto overflow-hidden rounded-lg">
                 {/* Image ou Vidéo */}
                 {!isWatching ? (
@@ -121,20 +123,7 @@ const MoviesPremiumDetails = () => {
                 <p className="text-neutral-500 text-left text-sm sm:text-base mt-2 leading-relaxed">
                     {movie.description}
                 </p>
-                <div className="flex flex-wrap mt-4 gap-4">
-                    <p className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg">
-                        {movie.category?.nom}
-                    </p>
-                    <p className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg">
-                        {movie.duration}
-                    </p>
-                    <div className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg">
-                        <MovieRating rating={movie.rating} />
-                    </div>
-                    <p className="text-neutral-500 text-sm sm:text-base border px-3 py-1 bg-neutral-950 rounded-lg">
-                        {movie.date}
-                    </p>
-                </div>
+                <VideoInfoIcons movie={movie} />
             </div>
 
             <div className="mt-16 border-t border-neutral-800">

@@ -1,5 +1,3 @@
-import Button from '../../components/Button';
-import { Tag, Clock3, CalendarDays } from 'lucide-react';
 import { useState, useEffect } from "react";
 import UserHeader from "./components/UserHeader";
 import UserSidebare from "./components/UserSidebar";
@@ -80,9 +78,6 @@ const UserMoviePremium = () => {
         <UserHeader onSearch={setQuery} />
 
         <main className="pt-20 px-6">
-          <div className="w-full mb-4">
-            <Button onClick={() => window.history.back()} />
-          </div>
           {/* <h1 className="text-red-500 text-5xl font-bold text-left mb-5 mt-5">Explore</h1> */}
 
           <div className="bg-black flex gap-3 top-16 overflow-x-auto fixed w-full z-10 h-15 py-2">
@@ -128,16 +123,14 @@ const UserMoviePremium = () => {
                     <div className="flex gap-4 overflow-x-auto pb-2 scroll-snap-x">
                       {moviesPremium.map((movie) => (
                         <Link to={`/movies/premium/${movie._id}`} key={movie._id} className="min-w-[200px]">
-                          <div className="bg-neutral-950 rounded-lg shadow p-4 flex flex-col gap-2">
-                            <img src={movie.thumbnailsUrl} alt={movie.title} className="w-full h-48 object-cover rounded-md mb-2" />
-                            <h3 className="text-lg font-bold text-white mb-1">{movie.title}</h3>
-                            <div className="flex gap-4 text-white text-sm items-center mb-2">
-                              <span className="flex items-center gap-1"><Tag size={16} /> {movie.category?.nom || movie.category?.name || '—'}</span>
-                              <span className="flex items-center gap-1"><Clock3 size={16} /> {movie.duration || '—'} min</span>
-                              <span className="flex items-center gap-1"><CalendarDays size={16} /> {movie.year || '—'}</span>
-                            </div>
-                            <p className="text-gray-400 text-sm mb-2">{movie.description}</p>
-                          </div>
+                          <UserMoviesCard
+                            movie={movie}
+                            onSelect={() => {}}
+                            onToggleFavorite={addOrDeleteFavoris}
+                            onToggleWatchLater={addOrRemoveWatchLater}
+                            isFavoris={favoris.includes(movie._id)}
+                            isWatchLater={watchLater.includes(movie._id)}
+                          />
                         </Link>
                       ))}
                     </div>
