@@ -13,7 +13,7 @@ const Container = () => {
         {
             question: "NextWatch est-il payant ?",
             answer:
-                "NextWatch propose une sélection de films est disponible gratuitement pour tester la plateforme, mais un abonnement à prix réduit est aussi possible.",
+                "NextWatch propose une sélection de films disponible gratuitement pour tester la plateforme, mais un abonnement à prix réduit est aussi possible.",
         },
         {
             question: "Puis-je regarder gratuitement des films ou séries ?",
