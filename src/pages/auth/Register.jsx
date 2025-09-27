@@ -91,7 +91,7 @@ const Register = () => {
     }
 
     return (
-        <div className="p-10 flex items-center justify-center flex-wrap-reverse bg-neutral-950">
+        <div className="p-12 flex items-center justify-center flex-wrap-reverse bg-neutral-950">
             <form
                 onSubmit={handleSubmit}
                 className="w-full max-w-lg h-[500px] mx-auto p-6 bg-neutral-950 border
@@ -160,7 +160,7 @@ const Register = () => {
                 />
                 <span
                     onClick={handlePasswordSecond}
-                    className="absolute right-3 top-9 cursor-pointer text-gray-500"
+                    className="absolute right-3 top-9 cursor-pointer text-white"
                 >
                     {viewPw ? <RiEyeLine /> : <RiEyeCloseLine />}
                 </span>
