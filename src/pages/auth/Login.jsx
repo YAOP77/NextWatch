@@ -50,34 +50,16 @@ const Login = () => {
 
         try {
             const response = await API.post("/auth/login", formData);
-
-            // Vérifie que le token est bien là
-            // console.log("Token reçu:", response.data.token);
-
-            // Recuperation de la reponse du backend
             const { user, token } = response.data;
-
-            // Stocker uniquement le token
             localStorage.setItem("token", token);
-
-            // Stocker les infos utilisateur séparément si besoin
             localStorage.setItem("user", JSON.stringify(user));
-            
             login({ userData: user, tokenData: token });
-
-            // Vérifie le contenu stocké
-            // console.log("Stocké dans localStorage:", JSON.parse(localStorage.getItem("user")));
-
             setLoading(true);
-            // setMessage({ type: "success", text: "Connexion en cours ..." });
-
             setTimeout(() => {
-                // setMessage(null);
                 Redirection(navigate, user.role);
             }, 5000);
-
         } catch (error) {
-            console.log("Une erreur est survenue lors de la connexion", error);
+            setMessage({ type: "error", text: "Email ou mot de passe incorrect" });
         }
         // finally {
         //     setLoading(false);
@@ -85,10 +67,10 @@ const Login = () => {
     }
 
     return (
-        <div className="flex items-center justify-center w-full h-full flex-wrap-reverse bg-neutral-950">
+        <div className="sm:p-0 p-10 px-4 flex items-center justify-center w-full h-full flex-wrap-reverse bg-neutral-950">
             <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-sm h-[330px] mx-auto p-6 bg-neutral-950 border border-neutral-800 space-y-4 rounded-lg"
+                className="w-full max-w-sm h-[330px] mx-auto p-6 bg-neutral-950 border border-neutral-800 space-y-4 rounded-lg mb-6"
             >
                 <h1 className="text-red-900 text-left pb-4 text-2xl font-bold">Connexion</h1>
 
@@ -149,7 +131,7 @@ const Login = () => {
 
                 {message?.text && (
                 <p
-                    className={`text-center text-lg ${
+                    className={`text-center text-lg sm:position relative bottom-5 ${
                     message.type === "error"
                         ? "text-red-500 font-extralight text-sm py-10"
                         : "text-green-600"

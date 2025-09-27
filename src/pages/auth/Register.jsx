@@ -91,11 +91,11 @@ const Register = () => {
     }
 
     return (
-        <div className="flex items-center justify-center flex-wrap-reverse bg-neutral-950">
+        <div className="p-10 flex items-center justify-center flex-wrap-reverse bg-neutral-950">
             <form
             onSubmit={handleSubmit}
             className="w-full max-w-sm h-[500px] mx-auto p-6 bg-neutral-950 border
-                border-neutral-800 space-y-4 rounded-lg border border-red-600"
+                border-neutral-800 space-y-4 rounded-lg"
             >
                 <h1 className="text-red-900 text-2xl text-left pb-2 font-bold">Inscrivez-vous</h1>
             <div className="flex-col justify-items-start">
@@ -190,7 +190,7 @@ const Register = () => {
 
             {message && message.text && (
                 <p
-                    className={`text-center text-lg ${
+                    className={`text-center text-lg sm:position relative top-7 ${
                         message.type === "error"
                             ? "text-red-500 font-extralight text-sm py-2"
                             : "text-green-600"
