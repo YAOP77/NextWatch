@@ -10,7 +10,7 @@ import { Play } from 'lucide-react';
 import Button from '../../components/Button';
 import { VideoInfoIcons } from '../../components/VideoInfoIcons';
 
-const MoviesPremiumDetails = () => {
+const MovieDetails = () => {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
     const [error, setError] = useState(null);
@@ -55,97 +55,88 @@ const MoviesPremiumDetails = () => {
         <div className="bg-black min-h-screen px-0 py-8">
             {/* <UserSidebare /> */}
             {/* <UserHeader /> */}
-
             <main className="w-full max-w-9xl mx-auto px-4 sm:px-8">
-            {/* Ligne avec bouton à gauche et vidéo à droite */}
-            <div className="flex items-start gap-4 justify-center w-full">
-                <div className="shrink-0 pt-1">
-                    <Button />
-                </div>
-
-                <div className="relative flex-1 h-[360px] sm:h-[680px] md:h-[560px] m-auto overflow-hidden rounded-lg">
-                {/* Image ou Vidéo */}
-                {!isWatching ? (
-                    <>
-                    <img
-                        src={movie.thumbnailsUrl}
-                        alt={`Affiche de ${movie.title}`}
-                        className="w-full h-full object-cover transition-opacity duration-1000"
-                        draggable={false}
-                        onContextMenu={(e) => e.preventDefault()}
-                    />
-
-                    {/* Overlay sombre */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
-
-                    {/* Titre en haut à gauche */}
-                    <h2 className="absolute top-4 left-4 text-white font-bold text-left text-2xl sm:text-4xl z-10">
-                        {movie.title}
-                    </h2>
-
-                    {/* Bouton en bas à gauche */}
-                    {movie.isPremium && movie.restricted ? (
-                        <a
-                            href="#subscription"
-                            className="absolute bottom-4 left-4 flex items-center gap-2 text-lg text-white bg-red-700
-                            px-5 py-3 rounded-lg hover:opacity-80 font-bold cursor-pointer z-10"
-                        >
-                            Choisir une offre
-                        </a>
-                    ) : (
-                        <button
-                            onClick={() => setIsWatching(true)}
-                            className="absolute bottom-4 left-4 flex items-center gap-2 text-lg text-white bg-neutral-950
-                            px-5 py-3 rounded-lg hover:opacity-75 font-bold cursor-pointer z-10"
-                        >
-                            Regarder <Play size={17} color="#ffce00" strokeWidth={1.75} />
-                        </button>
-                    )}
-                    </>
-                ) : (
-                    <video
-                        src={movie.moviesUrl}
-                        controls
-                        autoPlay
-                        controlsList="nodownload noplaybackrate"
-                        disablePictureInPicture
-                        playsInline
-                        className="w-full h-full object-cover rounded-lg"
-                        draggable={false}
-                        onContextMenu={(e) => e.preventDefault()}
-                    />
-                )}
-                </div>
-            </div>
-
-            {/* Détails */}
-            <div className="flex flex-col max-w-6xl mx-auto mt-13 rounded-lg p-4">
-                <h3 className="text-left text-red-800 mask-linear-from-red-800 text-2xl sm:text-6xl font-bold mb-4">Détails</h3>
-                    <h2 className="text-left mt-5 text-neutral-400 font-bold text-1xl sm:text-2xl z-1">
-                        {movie.title}
-                    </h2>
-
-                <p className="text-neutral-500 text-left text-sm sm:text-base mt-2 leading-relaxed">
-                    {movie.description}
-                </p>
-                <VideoInfoIcons movie={movie} />
-            </div>
-            <div className="mt-16 border-t border-neutral-800">
-                <SimilarMovies 
-                    movieId={movie._id} 
-                    category={movie.category?.nom}   
-                />
-            </div>
-
-            <div id="subscription">
-                <CardPayement />
-            </div>
-            {/* <div>
-                <Footer />
-            </div> */}
+                {/* Fragment parent */}
+                <>
+                    {/* Ligne avec bouton à gauche et vidéo à droite */}
+                    <div className="w-full flex flex-col items-center mb-2">
+                        <Button />
+                    </div>
+                    <div className="relative flex-1 h-[360px] sm:h-[680px] md:h-[560px] m-auto overflow-hidden rounded-lg">
+                        {/* Image ou Vidéo */}
+                        {!isWatching ? (
+                            <>
+                                <img
+                                    src={movie.thumbnailsUrl}
+                                    alt={`Affiche de ${movie.title}`}
+                                    className="w-full h-full object-cover transition-opacity duration-1000"
+                                    draggable={false}
+                                    onContextMenu={(e) => e.preventDefault()}
+                                />
+                                {/* Overlay sombre */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
+                                {/* Titre en haut à gauche */}
+                                <h2 className="absolute top-4 left-4 text-white font-bold text-left text-2xl sm:text-4xl z-10">
+                                    {movie.title}
+                                </h2>
+                                {/* Bouton en bas à gauche */}
+                                {movie.isPremium && movie.restricted ? (
+                                    <a
+                                        href="#subscription"
+                                        className="absolute bottom-4 left-4 flex items-center gap-2 text-lg text-white bg-red-700 px-5 py-3 rounded-lg hover:opacity-80 font-bold cursor-pointer z-10"
+                                    >
+                                        Choisir une offre
+                                    </a>
+                                ) : (
+                                    <button
+                                        onClick={() => setIsWatching(true)}
+                                        className="absolute bottom-4 left-4 flex items-center gap-2 text-lg text-white bg-neutral-950 px-5 py-3 rounded-lg hover:opacity-75 font-bold cursor-pointer z-10"
+                                    >
+                                        Regarder <Play size={17} color="#ffce00" strokeWidth={1.75} />
+                                    </button>
+                                )}
+                            </>
+                        ) : (
+                            <video
+                                src={movie.moviesUrl}
+                                controls
+                                autoPlay
+                                controlsList="nodownload noplaybackrate"
+                                disablePictureInPicture
+                                playsInline
+                                className="w-full h-full object-cover rounded-lg"
+                                draggable={false}
+                                onContextMenu={(e) => e.preventDefault()}
+                            />
+                        )}
+                    </div>
+                    {/* Détails */}
+                    <div className="flex flex-col max-w-6xl mx-auto mt-13 rounded-lg p-4">
+                        <h3 className="text-left text-red-800 mask-linear-from-red-800 text-2xl sm:text-6xl font-bold mb-4">Détails</h3>
+                        <h2 className="text-left mt-5 text-neutral-400 font-bold text-1xl sm:text-2xl z-1">
+                            {movie.title}
+                        </h2>
+                        <p className="text-neutral-500 text-left text-sm sm:text-base mt-2 leading-relaxed">
+                            {movie.description}
+                        </p>
+                        <VideoInfoIcons movie={movie} />
+                    </div>
+                    <div className="mt-16 border-t border-neutral-800">
+                        <SimilarMovies 
+                            movieId={movie._id} 
+                            category={movie.category?.nom}   
+                        />
+                    </div>
+                    <div id="subscription">
+                        <CardPayement />
+                    </div>
+                    {/* <div>
+                        <Footer />
+                    </div> */}
+                </>
             </main>
         </div>
     );
 };
 
-export default MoviesPremiumDetails;
+export default MovieDetails;
