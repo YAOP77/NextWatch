@@ -6,6 +6,7 @@ import UserSidebar from "./components/UserSidebar";
 import UserMovieCard from "./components/UserMovieCard";
 import useUserMovies from "./hooks/useUserMovies";
 import { ArchiveX } from 'lucide-react';
+import Button from '../../components/Button';
 
 const UserFavoris = () => {
   const { favoris, addOrDeleteFavoris, watchLater } = useUserMovies();
@@ -39,13 +40,11 @@ const UserFavoris = () => {
       <UserSidebar />
       <div className="flex-1 ml-0 md:ml-48">
         <main className="pt-20 px-6">
-          <div className="flex items-center mb-5 mt-5">
-            <a href="/movies" className="block md:hidden">
-              <button className="bg-neutral-900 text-white px-5 py-2 rounded-lg font-bold shadow hover:bg-neutral-800 transition mr-4 cursor-pointer">
-                Retour aux films
-              </button>
-            </a>
-            <h1 className="text-red-800 mask-linear-from-red-800 text-5xl font-bold text-left">
+          <div className="mb-5 mt-5">
+            <div className="block md:hidden w-fit">
+              <Button />
+            </div>
+            <h1 className="text-red-800 mask-linear-from-red-800 text-5xl font-bold text-left mt-2">
               Mes Favoris
             </h1>
           </div>
