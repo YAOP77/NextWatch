@@ -39,9 +39,16 @@ const UserFavoris = () => {
       <UserSidebar />
       <div className="flex-1 ml-0 md:ml-48">
         <main className="pt-20 px-6">
-          <h1 className="text-red-800 mask-linear-from-red-800 text-5xl font-bold text-left mb-5 mt-5">
-            Mes Favoris
-          </h1>
+          <div className="flex items-center mb-5 mt-5">
+            <a href="/movies">
+              <button className="bg-neutral-900 text-white px-5 py-2 rounded-lg font-bold shadow hover:bg-neutral-800 transition mr-4 cursor-pointer">
+                Retour aux films
+              </button>
+            </a>
+            <h1 className="text-red-800 mask-linear-from-red-800 text-5xl font-bold text-left">
+              Mes Favoris
+            </h1>
+          </div>
 
           <section className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {favoris.length > 0 ? (
