@@ -5,7 +5,7 @@ import userMoviesService from "./services/userMoviesService";
 import SimilarMovies from "./components/SimilarMovies";
 import CardPayement from "./components/CardPayement";
 import Loader from "../../components/loader/loader";
-import { Play } from 'lucide-react';
+import { Play, Bookmark, ClockFading } from 'lucide-react';
 import Button from '../../components/Button';
 import { VideoInfoIcons } from '../../components/VideoInfoIcons';
 
@@ -14,6 +14,17 @@ const MoviesPremiumDetails = () => {
     const [movie, setMovie] = useState(null);
     const [error, setError] = useState(null);
     const [isWatching, setIsWatching] = useState(false);
+    const [isFavoris, setIsFavoris] = useState(false);
+    const [isWatchLater, setIsWatchLater] = useState(false);
+    // Simule la gestion favoris et watch later (à remplacer par API réelle)
+    const handleToggleFavorite = (movieId) => {
+        setIsFavoris((prev) => !prev);
+        // TODO: call API favoris
+    };
+    const handleToggleWatchLater = (movieId) => {
+        setIsWatchLater((prev) => !prev);
+        // TODO: call API watch later
+    };
 
     // récupère user connecté
     const { user } = useAuth();
@@ -88,19 +99,33 @@ const MoviesPremiumDetails = () => {
                         {movie.isPremium && movie.restricted ? (
                             <a
                                 href="#subscription"
-                                className="absolute bottom-4 left-4 flex items-center gap-2 text-lg text-white bg-red-700
-                                px-5 py-3 rounded-lg hover:opacity-80 font-bold cursor-pointer z-10"
+                                className="absolute bottom-4 left-4 flex items-center gap-2 text-lg text-white bg-red-700 px-5 py-3 rounded-lg hover:opacity-80 font-bold cursor-pointer z-10"
                             >
                                 Choisir une offre
                             </a>
                         ) : (
-                            <button
-                                onClick={handleWatch}
-                                className="absolute bottom-4 left-4 flex items-center gap-2 text-lg text-white bg-neutral-950
-                                px-5 py-3 rounded-lg hover:opacity-75 font-bold cursor-pointer z-10"
-                            >
-                                Regarder <Play size={17} color="#ffce00" strokeWidth={1.75} />
-                            </button>
+                            <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
+                                <button
+                                    onClick={handleWatch}
+                                    className="flex items-center gap-2 text-lg text-white bg-neutral-950 px-5 py-3 rounded-lg hover:opacity-75 font-bold cursor-pointer"
+                                >
+                                    Regarder <Play size={17} color="#ffce00" strokeWidth={1.75} />
+                                </button>
+                                <button
+                                    className="bg-black bg-opacity-50 hover:bg-neutral-800 text-yellow-400 p-2 rounded-full transition cursor-pointer"
+                                    title="Mettre en favoris"
+                                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleFavorite(movie._id); }}
+                                >
+                                    <Bookmark size={20} color={isFavoris ? "#ffce00" : "#ffffff"} strokeWidth={1.75} />
+                                </button>
+                                <button
+                                    className="bg-black bg-opacity-50 hover:bg-neutral-800 text-yellow-400 p-2 rounded-full transition cursor-pointer"
+                                    title="Regarder plus tard"
+                                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchLater(movie._id); }}
+                                >
+                                    <ClockFading size={20} color={isWatchLater ? "#ffce00" : "#ffffff"} strokeWidth={1.75} />
+                                </button>
+                            </div>
                         )}
                     </>
                 ) : (
