@@ -49,7 +49,7 @@ const Login = () => {
         if(!handleValidation()) return;
 
         try {
-            const response = await API.post("/auth/login", formData);
+            const response = await API.post("auth/login", formData);
             const { user, token } = response.data;
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));

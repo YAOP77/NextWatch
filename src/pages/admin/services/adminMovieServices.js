@@ -5,7 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const MoviesUpload = async (formData) => {
     try {
-        const response = await axios.post(`${API_URL}/movies/uploads`, formData, {
+        const response = await axios.post(`${API_URL}/add`, formData, {
           headers: {
               "Content-Type": "multipart/form-data",
               ...authHeader(),
@@ -18,6 +18,22 @@ const MoviesUpload = async (formData) => {
         throw error;
     }
 };
+
+// const MoviesUpload = async (formData) => {
+//     try {
+//         const response = await axios.post(`${API_URL}/movies/uploads`, formData, {
+//           headers: {
+//               "Content-Type": "multipart/form-data",
+//               ...authHeader(),
+//           }
+//         });
+//         return response.data;
+//     } catch (error) {
+//         handleError(error);
+//         // Pour que le composant sache aussi gérer
+//         throw error;
+//     }
+// };
 
 const SmartReadMovies = async (category = "Tous") => {
     try {        
