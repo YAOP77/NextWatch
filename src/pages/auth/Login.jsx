@@ -130,15 +130,15 @@ const Login = () => {
                 </div>
 
                 {message?.text && (
-                <p
-                    className={`text-center text-lg sm:position relative bottom-5 ${
-                    message.type === "error"
-                        ? "text-red-500 font-extralight text-sm py-10"
-                        : "text-green-600"
-                    }`}
-                >
-                    {message.text}
-                </p>
+                    <p
+                        className={`text-center text-lg sm:position relative bottom-5 ${
+                        message.type === "error"
+                            ? "text-red-500 font-extralight text-sm py-10"
+                            : "text-green-600"
+                        }`}
+                    >
+                        {message.text}
+                    </p>
                 )}
             </form>
 

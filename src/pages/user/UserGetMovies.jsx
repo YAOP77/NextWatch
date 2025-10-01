@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import UserHeader from "./components/UserHeader";
 import UserSidebare from "./components/UserSidebar";
 import UserMoviesCard from "./components/UserMovieCard";
+import UserMoviesCarousel from "./components/UserMoviesCarousel";
 import useUserMovies from "./hooks/useUserMovies";
 import Footer from "../../components/Footer";
 import useUserCategory from "./hooks/userCategory";
@@ -120,21 +121,18 @@ const UserGetMovies = () => {
                 Object.entries(getMoviesByCategory(displayedMovies)).map(([categoryName, movies]) => (
                   <div key={categoryName} className="mb-8 w-full max-w-full">
                     <h2 className="text-3xl text-left text-neutral-400 font-bold mb-4">{categoryName}</h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 overflow-x-auto whitespace-nowrap
-                    lg:grid-cols-5 xl:grid-cols-6 xl:gap-39 md:gap-50 pb-2 gap-30">
-                      {movies.map((movie) => (
-                        <Link to={`${movie._id}`} key={movie._id} className="w-full">
-                          <UserMoviesCard
-                            movie={movie}
-                            onSelect={() => {}}
-                            onToggleFavorite={addOrDeleteFavoris}
-                            onToggleWatchLater={addOrRemoveWatchLater}
-                            isFavoris={favoris.includes(movie._id)}
-                            isWatchLater={watchLater.includes(movie._id)}
-                          />
-                        </Link>
-                      ))}
-                    </div>
+                    <UserMoviesCarousel
+                      movies={movies.map(movie => ({
+                        ...movie,
+                        isFavoris: favoris.includes(movie._id),
+                        isWatchLater: watchLater.includes(movie._id),
+                        showFavoriteIcon: true,
+                        showWatchLaterIcon: true
+                      }))}
+                      onSelect={() => {}}
+                      onToggleFavorite={addOrDeleteFavoris}
+                      onToggleWatchLater={addOrRemoveWatchLater}
+                    />
                   </div>
                 ))
               )}

@@ -4,6 +4,7 @@ import UserSidebar from "./components/UserSidebar";
 // import UserHeader from "./components/UserHeader";
 // import UserReadMovie from "./components/UserReadMovie";
 import UserMovieCard from "./components/UserMovieCard";
+import UserMoviesCarousel from "./components/UserMoviesCarousel";
 import useUserMovies from "./hooks/useUserMovies";
 import { ArchiveX } from 'lucide-react';
 import Button from '../../components/Button';
@@ -49,31 +50,20 @@ const UserFavoris = () => {
             </h1>
           </div>
 
-          <section className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <section className="mt-10">
             {favoris.length > 0 ? (
-              favoris.map((fav) => {
-                const absoluteMovie = {
+              <UserMoviesCarousel
+                movies={favoris.map(fav => ({
                   ...fav.movieId,
                   thumbnailsUrl: `https://nextwatch-a3h9.onrender.com/${fav.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-                  moviesUrl: `https://nextwatch-a3h9.onrender.com/${fav.movieId.moviesUrl.replace(/\\/g, '/')}`
-                };
-                return (
-                  <a
-                    key={absoluteMovie._id}
-                    href={absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`}
-                    className="block"
-                  >
-                    <UserMovieCard
-                      movie={absoluteMovie}
-                      onSelect={() => {}}
-                      onToggleFavorite={handleToggleFavorite}
-                      isFavoris={true}
-                      showFavoriteIcon={true}
-                      showWatchLaterIcon={false}
-                    />
-                  </a>
-                );
-              })
+                  moviesUrl: `https://nextwatch-a3h9.onrender.com/${fav.movieId.moviesUrl.replace(/\\/g, '/')}`,
+                  isFavoris: true,
+                  showFavoriteIcon: true,
+                  showWatchLaterIcon: false
+                }))}
+                onSelect={() => {}}
+                onToggleFavorite={handleToggleFavorite}
+              />
             ) : (
               <div className="flex flex-wrap items-center justify-start m-auto gap-4 w-2/1">
                 <p className="text-neutral-500 col-span-full">
