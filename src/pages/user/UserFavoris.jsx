@@ -16,8 +16,8 @@ const UserFavoris = () => {
     if (favoris.length > 0 && !selectedMovie) {
       const firstMovie = {
         ...favoris[0].movieId,
-        thumbnailsUrl: `https://nextwatch-a3h9.onrender.com/${favoris[0].movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-        moviesUrl: `https://nextwatch-a3h9.onrender.com/${favoris[0].movieId.moviesUrl.replace(/\\/g, '/')}`
+        thumbnailsUrl: watchLater[0].movieId.thumbnailsUrl,
+        moviesUrl: watchLater[0].movieId.moviesUrl,
       };
       setSelectedMovie(firstMovie);
     }
