@@ -55,8 +55,8 @@ const UserWatchLater = () => {
               watchLater.map((wat) => {
                 const absoluteMovie = {
                   ...wat.movieId,
-                  thumbnailsUrl: `https://nextwatch-a3h9.onrender.com/${wat.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-                  moviesUrl: `https://nextwatch-a3h9.onrender.com/${wat.movieId.moviesUrl.replace(/\\/g, '/')}`
+                  thumbnailsUrl: watchLater[0].movieId.thumbnailsUrl,
+                  moviesUrl: watchLater[0].movieId.moviesUrl,
                 };
                 const detailsUrl = absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`;
                 return (

@@ -54,8 +54,8 @@ const UserFavoris = () => {
               favoris.map((fav) => {
                 const absoluteMovie = {
                   ...fav.movieId,
-                  thumbnailsUrl: `https://nextwatch-a3h9.onrender.com/${fav.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-                  moviesUrl: `https://nextwatch-a3h9.onrender.com/${fav.movieId.moviesUrl.replace(/\\/g, '/')}`
+                  thumbnailsUrl: watchLater[0].movieId.thumbnailsUrl,
+                  moviesUrl: watchLater[0].movieId.moviesUrl,
                 };
                 return (
                   <a
