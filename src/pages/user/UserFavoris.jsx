@@ -13,15 +13,17 @@ const UserFavoris = () => {
   const [ selectedMovie, setSelectedMovie ] = useState(null);
 
   useEffect(() => {
-    if (favoris.length > 0 && !selectedMovie) {
+    const validFavoris = favoris.filter(fav => fav && fav.movieId);
+    const validWatchLater = watchLater && watchLater.filter(w => w && w.movieId);
+    if (validFavoris.length > 0 && !selectedMovie) {
       const firstMovie = {
-        ...favoris[0].movieId,
-        thumbnailsUrl: watchLater[0].movieId.thumbnailsUrl,
-        moviesUrl: watchLater[0].movieId.moviesUrl,
+        ...validFavoris[0].movieId,
+        thumbnailsUrl: validFavoris[0].movieId.thumbnailsUrl || (validWatchLater && validWatchLater[0] && validWatchLater[0].movieId ? validWatchLater[0].movieId.thumbnailsUrl : undefined),
+        moviesUrl: validFavoris[0].movieId.moviesUrl || (validWatchLater && validWatchLater[0] && validWatchLater[0].movieId ? validWatchLater[0].movieId.moviesUrl : undefined),
       };
       setSelectedMovie(firstMovie);
     }
-  }, [favoris, selectedMovie]);
+  }, [favoris, watchLater, selectedMovie]);
 
   const handleSelectMovie = (movie) => {
     setSelectedMovie(movie);
