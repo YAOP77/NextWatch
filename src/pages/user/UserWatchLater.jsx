@@ -17,8 +17,8 @@ const UserWatchLater = () => {
     if (watchLater.length > 0 && !selectedMovie) {
       const firstMovie = {
         ...watchLater[0].movieId,
-        thumbnailsUrl: watchLater[0].movieId.thumbnailsUrl,
-        moviesUrl: watchLater[0].movieId.moviesUrl,
+        thumbnailsUrl: `https://nextwatch-a3h9.onrender.com/${watchLater[0].movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
+        moviesUrl: `https://nextwatch-a3h9.onrender.com/${watchLater[0].movieId.moviesUrl.replace(/\\/g, '/')}`
       };
       setSelectedMovie(firstMovie);
     }

@@ -3,6 +3,7 @@ import UserHeader from "./components/UserHeader";
 import UserSidebare from "./components/UserSidebar";
 import UserMoviesCard from "./components/UserMovieCard";
 import useUserMovies from "./hooks/useUserMovies";
+import Footer from "../../components/Footer";
 import useUserCategory from "./hooks/userCategory";
 import userMoviesService from "./services/userMoviesService";
 import Loader from "../../components/loader/loader";
@@ -79,7 +80,7 @@ const UserGetMovies = () => {
         <main className="pt-20 px-6">
           {/* <h1 className="text-red-500 text-5xl font-bold text-left mb-5 mt-5">Explore</h1> */}
 
-          <div className="bg-black flex gap-3 top-16 overflow-x-auto fixed w-full z-10 h-12 p-1">
+          <div className="bg-black flex gap-3 top-16 overflow-x-auto fixed w-full z-10 h-15 py-2">
             <button onClick={() => setSelectedCategory("Tous")}
               className={`px-4 py-2 rounded-lg border border-neutral-800 cursor-pointer transition ${
                 selectedCategory === "Tous"
@@ -105,7 +106,7 @@ const UserGetMovies = () => {
             ))}
           </div>
 
-          <h1 className="text-red-500 text-5xl font-bold text-left mb-5 mt-15">Explore</h1>
+          <h1 className="text-red-800 mask-linear-from-red-800 text-6xl font-bold text-left mb-5 mt-15">Explore</h1>
           
           {loading ? (
             <Loader />
@@ -117,11 +118,12 @@ const UserGetMovies = () => {
                 </div>
               ) : (
                 Object.entries(getMoviesByCategory(displayedMovies)).map(([categoryName, movies]) => (
-                  <div key={categoryName} className="mb-8">
-                    <h2 className="text-xl text-left text-yellow-400 font-bold mb-4">{categoryName}</h2>
-                    <div className="flex gap-4 overflow-x-auto pb-2 scroll-snap-x">
+                  <div key={categoryName} className="mb-8 w-full max-w-full">
+                    <h2 className="text-3xl text-left text-neutral-400 font-bold mb-4">{categoryName}</h2>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 overflow-x-auto whitespace-nowrap
+                    lg:grid-cols-5 xl:grid-cols-6 xl:gap-39 md:gap-50 pb-2 gap-30">
                       {movies.map((movie) => (
-                        <Link to={`${movie._id}`} key={movie._id} className="min-w-[200px]">
+                        <Link to={`${movie._id}`} key={movie._id} className="w-full">
                           <UserMoviesCard
                             movie={movie}
                             onSelect={() => {}}
@@ -139,7 +141,9 @@ const UserGetMovies = () => {
             </section>
           )}
         </main>
-
+        <div>
+          <Footer />
+        </div>
       </div>
     </div>
   );
