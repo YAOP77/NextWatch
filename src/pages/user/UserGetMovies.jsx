@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import UserHeader from "./components/UserHeader";
 import UserSidebare from "./components/UserSidebar";
 import UserMoviesCard from "./components/UserMovieCard";
-import UserMoviesCarousel from "./components/UserMoviesCarousel";
 import useUserMovies from "./hooks/useUserMovies";
-import Footer from "../../components/Footer";
 import useUserCategory from "./hooks/userCategory";
 import userMoviesService from "./services/userMoviesService";
 import Loader from "../../components/loader/loader";
@@ -81,7 +79,7 @@ const UserGetMovies = () => {
         <main className="pt-20 px-6">
           {/* <h1 className="text-red-500 text-5xl font-bold text-left mb-5 mt-5">Explore</h1> */}
 
-          <div className="bg-black flex gap-3 top-16 overflow-x-auto fixed w-full z-10 h-15 py-2">
+          <div className="bg-black flex gap-3 top-16 overflow-x-auto fixed w-full z-10 h-12 p-1">
             <button onClick={() => setSelectedCategory("Tous")}
               className={`px-4 py-2 rounded-lg border border-neutral-800 cursor-pointer transition ${
                 selectedCategory === "Tous"
@@ -107,7 +105,7 @@ const UserGetMovies = () => {
             ))}
           </div>
 
-          <h1 className="text-red-800 mask-linear-from-red-800 text-6xl font-bold text-left mb-5 mt-15">Explore</h1>
+          <h1 className="text-red-500 text-5xl font-bold text-left mb-5 mt-15">Explore</h1>
           
           {loading ? (
             <Loader />
@@ -119,29 +117,29 @@ const UserGetMovies = () => {
                 </div>
               ) : (
                 Object.entries(getMoviesByCategory(displayedMovies)).map(([categoryName, movies]) => (
-                  <div key={categoryName} className="mb-8 w-full max-w-full">
-                    <h2 className="text-3xl text-left text-neutral-400 font-bold mb-4">{categoryName}</h2>
-                    <UserMoviesCarousel
-                      movies={movies.map(movie => ({
-                        ...movie,
-                        isFavoris: favoris.includes(movie._id),
-                        isWatchLater: watchLater.includes(movie._id),
-                        showFavoriteIcon: true,
-                        showWatchLaterIcon: true
-                      }))}
-                      onSelect={() => {}}
-                      onToggleFavorite={addOrDeleteFavoris}
-                      onToggleWatchLater={addOrRemoveWatchLater}
-                    />
+                  <div key={categoryName} className="mb-8">
+                    <h2 className="text-xl text-left text-yellow-400 font-bold mb-4">{categoryName}</h2>
+                    <div className="flex gap-4 overflow-x-auto pb-2 scroll-snap-x">
+                      {movies.map((movie) => (
+                        <Link to={`${movie._id}`} key={movie._id} className="min-w-[200px]">
+                          <UserMoviesCard
+                            movie={movie}
+                            onSelect={() => {}}
+                            onToggleFavorite={addOrDeleteFavoris}
+                            onToggleWatchLater={addOrRemoveWatchLater}
+                            isFavoris={favoris.includes(movie._id)}
+                            isWatchLater={watchLater.includes(movie._id)}
+                          />
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ))
               )}
             </section>
           )}
         </main>
-        <div>
-          <Footer />
-        </div>
+
       </div>
     </div>
   );

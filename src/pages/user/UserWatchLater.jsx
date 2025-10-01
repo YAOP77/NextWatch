@@ -4,7 +4,6 @@ import UserSidebar from "./components/UserSidebar";
 // import UserHeader from "./components/UserHeader";
 // import UserReadMovie from "./components/UserReadMovie";
 import UserMovieCard from "./components/UserMovieCard";
-import UserMoviesCarousel from "./components/UserMoviesCarousel";
 import { Link } from "react-router-dom";
 import useUserMovies from "./hooks/useUserMovies";
 import { ArchiveX } from 'lucide-react';
@@ -51,20 +50,28 @@ const UserWatchLater = () => {
             </h1>
           </div>
 
-          <section className="mt-10">
+          <section className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {watchLater.length > 0 ? (
-              <UserMoviesCarousel
-                movies={watchLater.map(wat => ({
+              watchLater.map((wat) => {
+                const absoluteMovie = {
                   ...wat.movieId,
                   thumbnailsUrl: `https://nextwatch-a3h9.onrender.com/${wat.movieId.thumbnailsUrl.replace(/\\/g, '/')}`,
-                  moviesUrl: `https://nextwatch-a3h9.onrender.com/${wat.movieId.moviesUrl.replace(/\\/g, '/')}`,
-                  isWatchLater: true,
-                  showWatchLaterIcon: true,
-                  showFavoriteIcon: false
-                }))}
-                onSelect={handleSelectMovie}
-                onToggleWatchLater={handleToggleWatchLater}
-              />
+                  moviesUrl: `https://nextwatch-a3h9.onrender.com/${wat.movieId.moviesUrl.replace(/\\/g, '/')}`
+                };
+                const detailsUrl = absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`;
+                return (
+                  <Link to={detailsUrl} key={absoluteMovie._id} className="block">
+                    <UserMovieCard
+                      movie={absoluteMovie}
+                      onSelect={handleSelectMovie}
+                      onToggleWatchLater={handleToggleWatchLater}
+                      isWatchLater={true}
+                      showWatchLaterIcon={true}
+                      showFavoriteIcon={false}
+                    />
+                  </Link>
+                );
+              })
             ) : (
               <div className="flex flex-wrap items-center justify-start m-auto gap-4 w-2/1">
                 <p className="text-neutral-500 col-span-full">
