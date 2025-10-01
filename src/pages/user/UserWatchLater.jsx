@@ -51,27 +51,29 @@ const UserWatchLater = () => {
           </div>
 
           <section className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {watchLater.length > 0 ? (
-              watchLater.map((wat) => {
-                const absoluteMovie = {
-                  ...wat.movieId,
-                  thumbnailsUrl: watchLater[0].movieId.thumbnailsUrl,
-                  moviesUrl: watchLater[0].movieId.moviesUrl,
-                };
-                const detailsUrl = absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`;
-                return (
-                  <Link to={detailsUrl} key={absoluteMovie._id} className="block">
-                    <UserMovieCard
-                      movie={absoluteMovie}
-                      onSelect={handleSelectMovie}
-                      onToggleWatchLater={handleToggleWatchLater}
-                      isWatchLater={true}
-                      showWatchLaterIcon={true}
-                      showFavoriteIcon={false}
-                    />
-                  </Link>
-                );
-              })
+            {watchLater && watchLater.filter(wat => wat && wat.movieId).length > 0 ? (
+              watchLater
+                .filter(wat => wat && wat.movieId)
+                .map((wat) => {
+                  const absoluteMovie = {
+                    ...wat.movieId,
+                    thumbnailsUrl: wat.movieId.thumbnailsUrl || (watchLater && watchLater[0] && watchLater[0].movieId ? watchLater[0].movieId.thumbnailsUrl : undefined),
+                    moviesUrl: wat.movieId.moviesUrl || (watchLater && watchLater[0] && watchLater[0].movieId ? watchLater[0].movieId.moviesUrl : undefined),
+                  };
+                  const detailsUrl = absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`;
+                  return (
+                    <Link to={detailsUrl} key={absoluteMovie._id} className="block">
+                      <UserMovieCard
+                        movie={absoluteMovie}
+                        onSelect={handleSelectMovie}
+                        onToggleWatchLater={handleToggleWatchLater}
+                        isWatchLater={true}
+                        showWatchLaterIcon={true}
+                        showFavoriteIcon={false}
+                      />
+                    </Link>
+                  );
+                })
             ) : (
               <div className="flex flex-wrap items-center justify-start m-auto gap-4 w-2/1">
                 <p className="text-neutral-500 col-span-full">
