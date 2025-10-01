@@ -11,7 +11,6 @@ const SimilarMovies = ({ movieId, category }) => {
         const fetchSimilar = async () => {
             try {
                 const data = await userMoviesService.GetSimilarMoviesById(movieId, category);
-                console.log('Similar movies:', data);
                 setSimilar(data);
             } catch (err) {
                 console.error("Erreur lors du chargement des films similaires :", err);
@@ -28,8 +27,8 @@ const SimilarMovies = ({ movieId, category }) => {
 
     return (
         <div className="mt-12 max-w-5xl mx-auto">
-            <h3 className="text-left text-red-800 mask-linear-from-red-800 text-2xl sm:text-5xl font-bold mb-10">Vous aimerez sûrement</h3>
-            <div className="flex gap-6 overflow-x-auto pb-2 scroll-snap-x snap-x">
+            <h3 className="text-left text-red-800 mask-linear-from-red-800 text-2xl sm:text-4xl font-bold mb-10">Vous aimerez sûrement</h3>
+            <div className="flex gap-4 overflow-x-auto pb-2 scroll-snap-x snap-x">
                 {similar.map((sim) => (
                     <div key={sim._id} className="min-w-[200px] snap-start">
                         <UserMoviesCard movie={sim} onSelect={handleSelect} showFavoriteIcon={false} showWatchLaterIcon={false} />

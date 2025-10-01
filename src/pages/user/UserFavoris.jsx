@@ -50,30 +50,32 @@ const UserFavoris = () => {
           </div>
 
           <section className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {favoris.length > 0 ? (
-              favoris.map((fav) => {
-                const absoluteMovie = {
-                  ...fav.movieId,
-                  thumbnailsUrl: watchLater[0].movieId.thumbnailsUrl,
-                  moviesUrl: watchLater[0].movieId.moviesUrl,
-                };
-                return (
-                  <a
-                    key={absoluteMovie._id}
-                    href={absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`}
-                    className="block"
-                  >
-                    <UserMovieCard
-                      movie={absoluteMovie}
-                      onSelect={() => {}}
-                      onToggleFavorite={handleToggleFavorite}
-                      isFavoris={true}
-                      showFavoriteIcon={true}
-                      showWatchLaterIcon={false}
-                    />
-                  </a>
-                );
-              })
+            {favoris && favoris.filter(fav => fav && fav.movieId).length > 0 ? (
+              favoris
+                .filter(fav => fav && fav.movieId)
+                .map((fav) => {
+                  const absoluteMovie = {
+                    ...fav.movieId,
+                    thumbnailsUrl: fav.movieId.thumbnailsUrl || (watchLater && watchLater[0] && watchLater[0].movieId ? watchLater[0].movieId.thumbnailsUrl : undefined),
+                    moviesUrl: fav.movieId.moviesUrl || (watchLater && watchLater[0] && watchLater[0].movieId ? watchLater[0].movieId.moviesUrl : undefined),
+                  };
+                  return (
+                    <a
+                      key={absoluteMovie._id}
+                      href={absoluteMovie.isPremium ? `/movies/premium/${absoluteMovie._id}` : `/movies/${absoluteMovie._id}`}
+                      className="block"
+                    >
+                      <UserMovieCard
+                        movie={absoluteMovie}
+                        onSelect={() => {}}
+                        onToggleFavorite={handleToggleFavorite}
+                        isFavoris={true}
+                        showFavoriteIcon={true}
+                        showWatchLaterIcon={false}
+                      />
+                    </a>
+                  );
+                })
             ) : (
               <div className="flex flex-wrap items-center justify-start m-auto gap-4 w-2/1">
                 <p className="text-neutral-500 col-span-full">
