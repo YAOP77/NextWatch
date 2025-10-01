@@ -11,6 +11,7 @@ const SimilarMovies = ({ movieId, category }) => {
         const fetchSimilar = async () => {
             try {
                 const data = await userMoviesService.GetSimilarMoviesById(movieId, category);
+                console.log('Similar movies:', data);
                 setSimilar(data);
             } catch (err) {
                 console.error("Erreur lors du chargement des films similaires :", err);
